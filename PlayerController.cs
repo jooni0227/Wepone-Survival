@@ -4,6 +4,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
+    private string      nextSceneName;
+    [SerializeField]
     private StageData   stageData;
     [SerializeField]
     private KeyCode keyCodeAttack=KeyCode.Space;
@@ -39,6 +41,14 @@ public class PlayerController : MonoBehaviour
             weapon.StopFiring();
         }
     }
+     private void LateUpdate()
+    {
+        transform.position=new Vector2(Mathf.Clamp(transform.position.x,stageData.LimitMin.x,stageData.LimitMax.x),
+                                       Mathf.Clamp(transform.position.y,stageData.LimitMin.y,stageData.LimitMax.y));
+    }
+    public void OnDie()
+    {
+        SceneManager.LoadScene(nextSceneName);
+    }
 
-    
 }
