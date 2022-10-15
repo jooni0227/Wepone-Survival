@@ -39,6 +39,9 @@ public class PlayerController : MonoBehaviour
             weapon.StopFiring();
         }
     }
-
+    public void OnDie()
+    {
+        SceneManager.LoadScene(nextSceneName);
+    }
     
 }
